@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
@@ -18,10 +19,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.exercicio_1_android_studio.ui.theme.Exercicio1AndroidStudioTheme
@@ -34,6 +33,7 @@ class MainActivity : ComponentActivity() {
             Exercicio1AndroidStudioTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     LinhaScore(modifier = Modifier.padding(innerPadding))
+                    Inimigos()
                 }
             }
         }
@@ -47,7 +47,7 @@ fun LinhaScore(modifier: Modifier = Modifier) {
             .background(Color.Black)
             .fillMaxSize()
             .padding(10.dp, 20.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween
 
 
     ) {
@@ -67,22 +67,19 @@ fun LinhaScore(modifier: Modifier = Modifier) {
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
-            AndroidEnemy(
+            VidaImg(
                 modifier = Modifier
-                    .size(15.dp),
-                color = Color.Red,
+                    .size(15.dp)
             )
 
-            AndroidEnemy(
+            VidaImg(
                 modifier = Modifier
-                    .size(15.dp),
-                color = Color.Red,
+                    .size(15.dp)
             )
 
-            AndroidEnemy(
+            VidaImg(
                 modifier = Modifier
-                    .size(15.dp),
-                color = Color.Red,
+                    .size(15.dp)
             )
         }
     }
@@ -90,14 +87,56 @@ fun LinhaScore(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun AndroidEnemy(
-    color: Color,
-    modifier: Modifier = Modifier
-) {
+fun Inimigos(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .padding(top = 130.dp)
+            .padding(horizontal = 20.dp)
+    ) {
+        Row(
+            modifier = modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            InimigosImg()
+
+            InimigosImg()
+
+            InimigosImg()
+
+            InimigosImg()
+
+        }
+        Row(
+            modifier = modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            InimigosImg()
+
+            InimigosImg()
+
+            InimigosImg()
+        }
+    }
+}
+
+
+// COMPOSABLE DE IMAGENS
+@Composable
+fun VidaImg(modifier: Modifier = Modifier) {
     Image(
         modifier = modifier,
         painter = painterResource(R.drawable.coracao),
-        colorFilter = ColorFilter.tint(color = color),
+        contentDescription = "Android Enemy"
+    )
+}
+
+@Composable
+fun InimigosImg(modifier: Modifier = Modifier) {
+    Image(
+        modifier = modifier.size(70.dp),
+        painter = painterResource(R.drawable.inimigo),
         contentDescription = "Android Enemy"
     )
 }
