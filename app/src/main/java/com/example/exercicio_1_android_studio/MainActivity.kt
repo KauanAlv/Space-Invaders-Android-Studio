@@ -1,5 +1,6 @@
 package com.example.exercicio_1_android_studio
 
+import android.R.attr.text
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,10 +8,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
@@ -21,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.exercicio_1_android_studio.ui.theme.Exercicio1AndroidStudioTheme
@@ -32,8 +36,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Exercicio1AndroidStudioTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LinhaScore(modifier = Modifier.padding(innerPadding))
-                    Inimigos()
+                    TelaJogo(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -41,15 +44,40 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun TelaJogo(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color.Black)
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+        ) {
+            LinhaScore()
+            Inimigos()
+        }
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(50.dp, Alignment.Bottom)
+        ) {
+            Player()
+            Iniciar()
+        }
+
+    }
+}
+
+@Composable
 fun LinhaScore(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
-            .background(Color.Black)
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(10.dp, 20.dp),
         horizontalArrangement = Arrangement.SpaceBetween
-
-
     ) {
         Text(
             text = "SCORE: 0050",
@@ -90,7 +118,7 @@ fun LinhaScore(modifier: Modifier = Modifier) {
 fun Inimigos(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .padding(top = 130.dp)
+            .padding(top = 80.dp)
             .padding(horizontal = 20.dp)
     ) {
         Row(
@@ -121,6 +149,37 @@ fun Inimigos(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun Player(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        PlayerImg()
+    }
+}
+
+@Composable
+fun Iniciar(modifier: Modifier = Modifier) {
+    Column(modifier = modifier.padding(bottom = 40.dp)) {
+        Box(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.DarkGray)
+        ) {
+            Text(
+                modifier = modifier.align(Alignment.Center),
+                text = "PRESS START",
+                color = Color.White,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+
+            )
+        }
+    }
+}
 
 // COMPOSABLE DE IMAGENS
 @Composable
@@ -128,7 +187,7 @@ fun VidaImg(modifier: Modifier = Modifier) {
     Image(
         modifier = modifier,
         painter = painterResource(R.drawable.coracao),
-        contentDescription = "Android Enemy"
+        contentDescription = "Vida do Player"
     )
 }
 
@@ -137,6 +196,15 @@ fun InimigosImg(modifier: Modifier = Modifier) {
     Image(
         modifier = modifier.size(70.dp),
         painter = painterResource(R.drawable.inimigo),
-        contentDescription = "Android Enemy"
+        contentDescription = "Inimigos"
+    )
+}
+
+@Composable
+fun PlayerImg(modifier: Modifier = Modifier) {
+    Image(
+        modifier = modifier.size(70.dp),
+        painter = painterResource(R.drawable.player),
+        contentDescription = "Player"
     )
 }
