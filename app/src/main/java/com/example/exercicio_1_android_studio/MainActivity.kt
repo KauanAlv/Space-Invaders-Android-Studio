@@ -1,6 +1,5 @@
 package com.example.exercicio_1_android_studio
 
-import android.R.attr.text
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.exercicio_1_android_studio.ui.theme.Exercicio1AndroidStudioTheme
@@ -219,7 +217,7 @@ fun GameOver(modifier: Modifier = Modifier) {
 }
 
 
-// COMPOSABLE DE IMAGENS
+// COMPOSABLES DE IMAGENS
 
 // Composable da imagem da vida
 @Composable
