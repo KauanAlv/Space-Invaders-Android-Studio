@@ -51,7 +51,7 @@ fun TelaJogo(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        GameOver() // Se tirar o comentário, aparece a tela de game over
+        //GameOver() // Se tirar o comentário, aparece a tela de game over
         Column(
             modifier = Modifier
                 .weight(1f)
