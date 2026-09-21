@@ -43,6 +43,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// COMPOSABLE DA TELA INICIAL DO JOGO
 @Composable
 fun TelaJogo(modifier: Modifier = Modifier) {
     Column(
@@ -50,6 +51,7 @@ fun TelaJogo(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .background(Color.Black)
     ) {
+        GameOver() // Se tirar o comentário, aparece a tela de game over
         Column(
             modifier = Modifier
                 .weight(1f)
@@ -181,7 +183,45 @@ fun Iniciar(modifier: Modifier = Modifier) {
     }
 }
 
+
+// COMPOSABLE DA TELA DE GAME OVER
+@Composable
+fun GameOver(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Row(
+            modifier = modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            InimigosImg()
+
+            InimigosImg()
+
+            InimigosImg()
+
+            InimigosImg()
+
+            InimigosImg()
+        }
+        Text(
+            text = "GAME OVER",
+            fontSize = 70.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.White
+        )
+    }
+
+}
+
+
 // COMPOSABLE DE IMAGENS
+
+// Composable da imagem da vida
 @Composable
 fun VidaImg(modifier: Modifier = Modifier) {
     Image(
@@ -191,6 +231,7 @@ fun VidaImg(modifier: Modifier = Modifier) {
     )
 }
 
+// Composable das imagens dos inimigos
 @Composable
 fun InimigosImg(modifier: Modifier = Modifier) {
     Image(
@@ -200,6 +241,7 @@ fun InimigosImg(modifier: Modifier = Modifier) {
     )
 }
 
+// Composable da imagem do player
 @Composable
 fun PlayerImg(modifier: Modifier = Modifier) {
     Image(
